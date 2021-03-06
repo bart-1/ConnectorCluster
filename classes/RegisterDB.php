@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace ConnectorCluster\Classes;
+namespace ConnectorCluster\classes;
 
 /**
  * Description of RegisterDB
