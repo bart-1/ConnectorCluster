@@ -7,11 +7,30 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>logowanie</title>
     </head>
     <body>
+        
+        <div>
+            <div>
+                <span> logowanie </span>
+                <form action="index.php" method="post">
+                    <input type="text" name="login"/>
+                    <input type="password" name="passwd"/>
+                    <input type="submit" value="zaloguj"/>
+                </form>
+                <span> rejestracja </span>
+                <form action="index.php" method="post">
+                    <input type="text" name="loginR"/>
+                    <input type="password" name="passwdR"/>
+                    <input type="submit" value="zarejestruj"/>
+                </form>
+                
+            </div>
+            
+        </div>
         <?php
-        // put your code here
+        
         ?>
     </body>
 </html>
