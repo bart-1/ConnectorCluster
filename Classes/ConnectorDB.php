@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace ConnectorCluster;
+namespace ConnectorCluster\Classes;
 
 /**
  * Description of abstractConnector
