@@ -16,12 +16,30 @@ namespace ConnectorCluster\classes;
 class Autoloader
 {
     public $className;
+    public $extensions = array('.php', '.class.php', '.interface.php');
+    public $paths = array('/classes/', '/interfaces/');
     
-    public function __construct($className)
+
+    public function __construct()
     {
-         spl_autoload_register(function ($className)
+        $this->autloader();
+    }
+    
+    public function autloader()
+    {
+        foreach ($this->paths as $path)
         {
-            include str_replace('\\', '/', __NAMESPACE__.$className . '.php');
-        });
+            foreach ($this->extensions as $ext )
+            {
+                echo $path."file".$ext."<br />";
+               if (is_file($path.$this->className.$ext) && is_callable($path.$this->className.$ext) 
+                       && !class_exists($this->className))
+               {
+                   include_once $path.$this->className.$ext;
+                   echo $path.$this->className.$ext." :loaded";
+               }
+            }
+        }
+        
     }
 }

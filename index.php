@@ -30,7 +30,8 @@ and open the template in the editor.
             
         </div>
         <?php
-        
+        require_once 'classes/Autoloader.php';
+        $loader = new ConnectorCluster\classes\Autoloader();
         ?>
     </body>
 </html>
