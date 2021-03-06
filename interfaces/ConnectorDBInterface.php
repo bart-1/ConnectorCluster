@@ -14,7 +14,7 @@ namespace ConnectorCluster\interfaces;
  */
 interface ConnectorDBInterface
 {
-  public function __construct();
+  public function __construct($iniFilename);
   public function prepareStmt();
   public function connectPDO();
           

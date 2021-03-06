@@ -16,12 +16,14 @@ namespace ConnectorCluster\classes;
 class Autoloader
 {
     public $className;
-    public $extensions = array('.php', '.class.php', '.interface.php');
-    public $paths = array('/classes/', '/interfaces/');
+   // public $extensions = array('.php', '.class.php', '.interface.php');
+    
+    public $paths = array('interfaces/', 'classes/');
     
 
     public function __construct()
     {
+        spl_autoload_register(null, false);
         $this->autloader();
     }
     
@@ -29,14 +31,16 @@ class Autoloader
     {
         foreach ($this->paths as $path)
         {
-            foreach ($this->extensions as $ext )
+            $filesNames = scandir($path);
+            foreach ($filesNames as $fileName )
             {
-                echo $path."file".$ext."<br />";
-               if (is_file($path.$this->className.$ext) && is_callable($path.$this->className.$ext) 
-                       && !class_exists($this->className))
+                echo $path.$fileName."<br />";
+               if (is_file($path.$fileName) && is_readable($path.$fileName) 
+                       && !class_exists(rtrim($fileName, '.php')))
                {
-                   include_once $path.$this->className.$ext;
-                   echo $path.$this->className.$ext." :loaded";
+                   include_once $path.$fileName;
+                   echo $path.$fileName." :loaded"."<br />";
+                  // echo rtrim($fileName, '.php')))."<br />";
                }
             }
         }

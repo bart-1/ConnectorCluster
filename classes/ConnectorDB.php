@@ -7,6 +7,7 @@
  */
 
 namespace ConnectorCluster\classes;
+use ConnectorCluster\interfaces\ConnectorDBInterface;
 
 /**
  * Description of abstractConnector
