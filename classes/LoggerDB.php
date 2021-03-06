@@ -15,5 +15,19 @@ namespace ConnectorCluster\classes;
  */
 class LoggerDB extends ConnectorDB
 {
-    //put your code here
+    private $login;
+    private $passwd;
+
+
+    public function __construct($login, $passwd, $iniFileName)
+    {
+        parent::__construct($iniFileName);
+        $this->login = $login;
+        $this->passwd = $passwd;
+    }
+    
+    public function prepareStmt()
+    {
+        
+    }
 }
