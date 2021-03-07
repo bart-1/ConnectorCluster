@@ -17,9 +17,9 @@ use ConnectorCluster\interfaces\ConnectorDBInterface;
 abstract class ConnectorDB implements ConnectorDBInterface
 {
    
-    public $handlerDB;
+    protected $dbh;
     public $iniFileName;
-    public $iniParserData = array();
+    protected $iniParserData = array();
 
 
     public function __construct($iniFileName)
@@ -34,9 +34,24 @@ abstract class ConnectorDB implements ConnectorDBInterface
     
     public abstract function prepareStmt();
    
-    public function connectPDO()
+    protected function connectPDO()
     {
-        $this->handlerDB = new PDO("$this->iniParserData['engineDB']:host=$this->iniParserData['hostDB']; dbname=$this->iniParserData['nameDB]",
-        $this->iniParserData['loginDB'], $this->iniParserData['passwdDB'], $this->iniParserData['optionsDB']);
+        try 
+        {
+            $this->dbh = new PDO("$this->iniParserData['engineDB']:host=$this->iniParserData['hostDB']; dbname=$this->iniParserData['nameDB]",
+            $this->iniParserData['loginDB'], $this->iniParserData['passwdDB'], $this->iniParserData['optionsDB']);
+            $this->dbh->beginTransaction();
+            
+            
+        } catch (PDOException $ex) {
+             $this->dbh->rollBack(); 
+             echo "błąd: ".$ex->getMessage();
+        }
+    }
+    protected function endConnection()
+    {
+        $this->stmt->closeCursor();
+        $this->dbh->commit();
+        $this->dbh = null;
     }
 }
