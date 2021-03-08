@@ -47,7 +47,7 @@ class LoggerDB extends ConnectorDB
         $this->endConnection();
         
     }
-    private function prepareStmt()
+    public function prepareStmt()
     {
         $this->stmt = $this->dbh->prepare("SELECT passwd FROM :table WHERE login = :login");
         $this->stmt = bindParam(':table', $this->table);

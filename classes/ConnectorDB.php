@@ -38,14 +38,14 @@ abstract class ConnectorDB implements ConnectorDBInterface
         $this->iniFileName = $iniFileName; 
     }
     
-    public function iniFileLoader()
+    protected function iniFileLoader()
     {
         $this->iniParserData = parse_ini_file("ini/$this->iniFileName");
     }
     
     public abstract function prepareStmt();
    
-    protected function connectPDO()
+    public function connectPDO()
     {
         try 
         {
@@ -59,7 +59,7 @@ abstract class ConnectorDB implements ConnectorDBInterface
              echo "błąd: ".$ex->getMessage();
         }
     }
-    protected function endConnection()
+    public function endConnection()
     {
         $this->stmt->closeCursor();
         $this->dbh->commit();

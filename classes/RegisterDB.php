@@ -45,7 +45,7 @@ class RegisterDB extends ConnectorDB
         $this->endConnection();
     }
     
-    private function prepareStmt()
+    public function prepareStmt()
     {
         $this->stmt = $this->dbh->prepare("INSERT INTO :table (login, passwd) VALUES (:login, :passwd)");
         $this->stmt = bindParam(':table', $this->table);
