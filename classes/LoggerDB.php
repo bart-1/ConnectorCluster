@@ -60,9 +60,12 @@ class LoggerDB extends ConnectorDB
         $this->passwdMatrix = $this->stmt->fetchObject();
         if ($this->passwdMatrix['passwd'] == $this->passwd)
         {
-            $logged = new SessionKeeper(true);
+            SessionKeeper::sessionStarter();
         }
-        else { $logged = new SessionKeeper(false); }
+        else { 
+            SessionKeeper::sessionDestroyer();
+        }
     }
+   
     
 }
