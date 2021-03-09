@@ -26,12 +26,16 @@ namespace ConnectorCluster\classes;
  */
 class MessageManager
 {
+    use ConnectorCluster\classes\ConnetorDB;
+    
     public static function sendToView($case)
     {
         echo "<p> I'm sorry. $case no success</p> ";
     }
+    
     public static function keepInLog($case)
     {
         
     }
+    
 }

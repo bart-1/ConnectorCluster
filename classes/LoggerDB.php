@@ -27,6 +27,7 @@ namespace ConnectorCluster\classes;
 class LoggerDB extends ConnectorDB
 {
     use ConnectorCluster\classes\CrypterTrait;
+    
     private $login;
     private $passwd;
     protected $table;
