@@ -18,36 +18,25 @@
  */
 
 namespace ConnectorCluster\classes;
+use ConnectorCluster\interfaces\KnownUserInterface;
 
 /**
- * Description of messegeProjector
+ * Description of KnownUser
  *
  * @author bartek
  */
-class MessageManager extends ConnectorDB 
+class KnownUser implements KnownUserInterface
 {
-    
-    protected $case = '';
-    
-    
-    public static function sendToView($case)
+    public $name;
+    public $email;
+    public $id;
+            
+    public function setUserData()
     {
-        echo "<p> I'm sorry. $case no success</p> ";
+        
     }
-    
-    public function prepareStmt()
+    public function getUserData()
     {
-        $this->stmt = $this->dbh->prepare("INSERT INTO :table (log_case) VALUES ($this->case)");
-        $this->stmt = bindParam(':table', logs);
-        $this->stmt->execute();  
-    }
-    
-    public static function keepInLog($case)
-    {
-        $this->case = $case;
-        parent::connectPDO();
-        $this->prepareStmt();
-        parent::endConnection();
         
     }
     

@@ -18,6 +18,7 @@
  */
 
 namespace ConnectorCluster\classes;
+use ConnectorCluster\classes\CrypterTrait;
 
 /**
  * Description of RegisterDB
@@ -26,7 +27,6 @@ namespace ConnectorCluster\classes;
  */
 class RegisterDB extends ConnectorDB
 {
-    use ConnectorCluster\classes\CrypterTrait;
     private $login;
     private $passwd;
     protected $table;

@@ -18,6 +18,8 @@
  */
 
 namespace ConnectorCluster\classes;
+use ConnectorCluster\classes\SessionKeeper;
+use ConnectorCluster\classes\CrypterTrait;
 
 /**
  * Description of LoggerDB
@@ -26,7 +28,6 @@ namespace ConnectorCluster\classes;
  */
 class LoggerDB extends ConnectorDB
 {
-    use ConnectorCluster\classes\CrypterTrait;
     
     private $login;
     private $passwd;
@@ -38,7 +39,7 @@ class LoggerDB extends ConnectorDB
     public function __construct($login, $passwd, $table, $iniFileName)
     {
         $this->login = filter_var($login, FILTER_SANITIZE_STRING);
-        $this->passwd = crypterTrait($passwd);
+        $this->passwd = $this->crypterTrait($passwd);
         $this->table = $table;
        
         parent::__construct($iniFileName);
@@ -65,6 +66,9 @@ class LoggerDB extends ConnectorDB
         }
         else { 
             SessionKeeper::sessionDestroyer();
+            $case = 'Wrong password';
+            MessageManager::keepInLog($case)::sendToView($case);
+            
         }
     }
    

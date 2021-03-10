@@ -27,13 +27,18 @@ namespace ConnectorCluster\classes;
 class SessionKeeper
 {
  
+    public function __construct($param)
+    {
+        
+    }
+    
     public static function sessionStarter()
     {
         session_start();
         $_SESSION['userKnown'] = 1; 
         $_SESSION['time'] = time(); 
         $_SESSION['machine'] = $_SERVER['HTTP_USER_AGENT']; 
-       new UserKnown(); 
+      
         
     }
     public static function sessionDestroyer()

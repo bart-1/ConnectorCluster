@@ -17,38 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace ConnectorCluster\classes;
+namespace ConnectorCluster\interfaces;
 
 /**
- * Description of messegeProjector
  *
  * @author bartek
  */
-class MessageManager extends ConnectorDB 
+interface KnownUserInterface
 {
+    public function setUserData();
     
-    protected $case = '';
-    
-    
-    public static function sendToView($case)
-    {
-        echo "<p> I'm sorry. $case no success</p> ";
-    }
-    
-    public function prepareStmt()
-    {
-        $this->stmt = $this->dbh->prepare("INSERT INTO :table (log_case) VALUES ($this->case)");
-        $this->stmt = bindParam(':table', logs);
-        $this->stmt->execute();  
-    }
-    
-    public static function keepInLog($case)
-    {
-        $this->case = $case;
-        parent::connectPDO();
-        $this->prepareStmt();
-        parent::endConnection();
-        
-    }
+    public function getUserData();
     
 }
